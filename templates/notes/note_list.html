@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<br>
+<div class="jumbotron jumbotron-fluid border">
+    <div class="container text-monospace">
+        <ul class="list-group list-group-flush">
+            {% if object_list %}
+            {% for object in object_list %}
+            <a href="{% url 'notes:single' username=object.user.username pk=object.pk %}"
+               class="list-group-item list-group-item-action"><strong>{{object.titulo}}</strong>
+                <p>{{object.texto }}</p>
+                <p>{{object.created_at}}</p>
+            </a>
+            {%endfor%}
+        </ul>
+        {%else%}
+        <h1>Sem Anotações no momento!</h1>
+        <br>
+        <h3>Faça uma anotação agora!</h3>
+    </div>
+</div>
+{% endif %}
+{%endblock%}

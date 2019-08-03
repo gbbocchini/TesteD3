@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+<div class="jumbotron jumbotron-fluid border">
+    <div class="container text-monospace">
+            <div class="row align-items-center">
+   <div class="col-6">
+        <h1>Tens certeza?</h1>
+        <form method="POST">
+            {% csrf_token %}
+           <p>{{ object.titulo }}</p>
+            <p> {{object.texto }}</p>
+            <p>{{object.created_at}}</p>
+            <input type="submit" class="btn btn-danger" value="Deletar">
+        </form>
+    </div>
+</div>
+
+{%endblock%}
