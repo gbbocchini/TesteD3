@@ -10,6 +10,6 @@ class NoteViewSet(ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
+    authentication_classes = (TokenAuthentication, SessionAuthentication,)
     filter_backends = (SearchFilter,)
-    search_fields = ['id', 'titulo']
+    search_fields = ['id', 'user', 'titulo', 'texto', 'created_at']

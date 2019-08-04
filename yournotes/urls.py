@@ -19,6 +19,7 @@ from .views import Home
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from notes.api.viewsets import NoteViewSet
+import rest_framework.urls
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewSet)
@@ -29,7 +30,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('notes/', include('notes.urls')),
-    path('api/', include(router.urls)),
+    path('api/', include('rest_framework.urls')),
+    path('api/v1/', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
-    path('rest-auth/', include('rest_auth.urls')),
 ]

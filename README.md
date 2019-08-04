@@ -1,22 +1,30 @@
 # TesteD3
-App Web Notas
+App Web de Anotações. Aplicativo exemplo para anotações pessoais com API REST.
 
-Aplicativo exemplo para anotações pessoais com API REST.
 
-#DEPLOY ADDRESS
+# DEPLOY ADDRESS
+
 https://yournotes4d3.herokuapp.com
 
-user: testuser
+user: tester
+
 senha: bocchini1983
 
 
 # API
-login via API (session habilitada, possivel fazer com token também):
+ENDPOINT PARA OBTENÇÃO TOKEN DE ACESSO:
 
-https://yournotes4d3.herokuapp.com/rest-auth/logit gin/
+https://yournotes4d3.herokuapp.com/api-token-auth/
 
-# ROOT ENDPOINT
-https://yournotes4d3.herokuapp.com/api/
+POST com USERNAME e PASSWORD como form-data (imagem exemplo "Token request - postman" neste mesmo repo)
 
-# NOTES ENDPOINT (só logado)
-https://yournotes4d3.herokuapp.com/api/notes
+
+# NOTES ENDPOINT:
+https://yournotes4d3.herokuapp.com/api/v1/notes
+
+
+GET e demais métodos obrigatóriamente com os seguintes HEADERS (imagem exemplo "acesso com Token postman" neste mesmo repo):
+
+CONTENT-TYPE == application/json 
+
+Authorization == Token seu-token

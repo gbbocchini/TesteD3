@@ -19,8 +19,8 @@ class CreateNote(LoginRequiredMixin, SelectRelatedMixin, CreateView):
         self.object.user = self.request.user
         self.object.save()
         return super(ModelFormMixin, self).form_valid(form)
-    
-    
+
+
 class DetailNote(LoginRequiredMixin, DetailView):
     model = Note   
 
@@ -39,9 +39,17 @@ class ListNote(LoginRequiredMixin, ListView):
 class DeleteNote(LoginRequiredMixin, DeleteView):
     model = Note
     success_url = reverse_lazy('notes:list')
-    
-      
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user__username__iexact=self.kwargs.get('username'))
+
+
 class UpdateNote(LoginRequiredMixin, UpdateView):
     model = Note
     fields = ['titulo', 'texto']
     template_name_suffix = '_update_form'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user__username__iexact=self.kwargs.get('username'))
