@@ -11,5 +11,5 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = (SearchFilter,)
-    authentication_classes = (TokenAuthentication, SessionAuthentication,)
+    authentication_classes = (TokenAuthentication,)
     search_fields = ['username', 'email']

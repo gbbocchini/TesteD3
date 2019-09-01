@@ -1,3 +1,4 @@
+from rest_framework import request
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
@@ -10,6 +11,9 @@ class NoteViewSet(ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication, SessionAuthentication,)
+    authentication_classes = (TokenAuthentication,)
     filter_backends = (SearchFilter,)
     search_fields = ['id', 'user', 'titulo', 'texto', 'created_at']
+
+    def get_queryset(self):
+        return Note.objects.filter(user=self.request.user)
